@@ -56,15 +56,6 @@ export default function WeddingInvitation() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    if (isOpened && audioRef.current) {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => console.log("Audio autoplay blocked by browser"));
-    } else if (!isOpened && audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    }
-  }, [isOpened]);
-
   const toggleAudio = () => {
     if (!audioRef.current) return;
     if (isPlaying) {
@@ -89,6 +80,8 @@ export default function WeddingInvitation() {
   return (
     <main className="h-[100dvh] w-full bg-brown-dark overflow-hidden relative flex items-center justify-center font-montserrat">
       <FloatingPetals />
+      
+      <audio ref={audioRef} src="/hetaka-mangala-mudu-da-mahiru-senarathne-yashodha-medagedara.mp3" loop />
 
       <AnimatePresence mode="wait">
         {!isOpened ? (
@@ -117,7 +110,12 @@ export default function WeddingInvitation() {
             {/* Gatefold Envelope */}
             <div
               className="relative w-full max-w-[400px] aspect-[1/1.4] flex items-center justify-center group cursor-pointer perspective-1000"
-              onClick={() => setIsOpened(true)}
+              onClick={() => {
+                setIsOpened(true);
+                if (audioRef.current) {
+                  audioRef.current.play().then(() => setIsPlaying(true)).catch(e => console.log("Audio autoplay blocked", e));
+                }
+              }}
             >
               <div className="absolute inset-0 bg-brown-base rounded-xl shadow-2xl border border-theme-500/20 overflow-hidden" />
 
@@ -188,7 +186,13 @@ export default function WeddingInvitation() {
               
               {/* Top fixed close button */}
               <button
-                onClick={() => setIsOpened(false)}
+                onClick={() => {
+                  setIsOpened(false);
+                  if (audioRef.current) {
+                    audioRef.current.pause();
+                    setIsPlaying(false);
+                  }
+                }}
                 className="absolute top-3 right-3 z-50 p-1.5 rounded-full border border-theme-500/20 text-theme-700 hover:text-theme-500 hover:border-theme-500/50 bg-brown-base/80 backdrop-blur-sm transition-all duration-300"
                 title="Return to envelope"
               >
@@ -203,8 +207,6 @@ export default function WeddingInvitation() {
               >
                 {isPlaying ? <Music className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4" />}
               </button>
-
-              <audio ref={audioRef} src="/hetaka-mangala-mudu-da-mahiru-senarathne-yashodha-medagedara.mp3" loop />
 
               {/* Full Background Image */}
               <div 
@@ -423,7 +425,13 @@ export default function WeddingInvitation() {
 
                   {/* Bottom close button */}
                   <button
-                    onClick={() => setIsOpened(false)}
+                    onClick={() => {
+                      setIsOpened(false);
+                      if (audioRef.current) {
+                        audioRef.current.pause();
+                        setIsPlaying(false);
+                      }
+                    }}
                     className="mt-2 text-theme-700 hover:text-theme-500 hover:underline transition-colors text-[7px] uppercase tracking-[0.2em] flex items-center justify-center gap-1 group w-full pt-2 border-t border-theme-500/10 mx-auto"
                   >
                     Return to Cover
