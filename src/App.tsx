@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Phone, MapPin, Calendar, Clock, X, Music, VolumeX } from "lucide-react";
 
 /**
- * Premium Sri Lankan Wedding Invitation Theme
+ * Premium Sri Lankan Engagement Invitation Theme
  * Names: Naween & Nadeesha
  * Background: Cream/Sand
  * Accents: Green/Brown
@@ -45,7 +45,7 @@ function FloatingPetals() {
   );
 }
 
-export default function WeddingInvitation() {
+export default function EngagementInvitation() {
   const [isOpened, setIsOpened] = useState(false);
   const [rsvpName, setRsvpName] = useState("");
   const [attendance, setAttendance] = useState<"attending" | "declined" | null>(null);
@@ -257,7 +257,7 @@ export default function WeddingInvitation() {
                   <div className="space-y-0.5 max-w-[320px] mx-auto">
                     <p className="text-[7px] md:text-[9px] tracking-widest font-semibold text-theme-600 uppercase">Together with their families</p>
                     <p className="text-[7px] md:text-[8px] italic text-theme-600/90 font-serif leading-relaxed">
-                      joyfully invite you to celebrate their wedding
+                      joyfully invite you to celebrate their engagement
                     </p>
                   </div>
 
