@@ -72,14 +72,40 @@ export default function EngagementInvitation() {
     }
   };
 
-  const handleRsvpSubmit = (e: React.FormEvent) => {
+  const handleRsvpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!rsvpName || !attendance) return;
     setSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const formData = new FormData();
+      formData.append("name", rsvpName);
+      formData.append("attendance", attendance);
+      formData.append("guests", attendance === "attending" ? guests.toString() : "0");
+      formData.append("guestPrefix", guestPrefix || "");
+      formData.append("guestName", guestName || "");
+
+      // Replace this URL with your deployed Google Apps Script Web App URL
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxO0LHroR-4WZ781x8mLLPznhCTWaqgqkrJLySE0o0vFfGXDV6DLsPv4HcqmJvVoLV/exec";
+
+      if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors" // Prevents CORS preflight issues
+        });
+      } else {
+        // Simulate network delay if URL is not set
+        await new Promise(resolve => setTimeout(resolve, 1200));
+      }
+
       setSubmitting(false);
       setRsvpSubmitted(true);
-    }, 1200);
+    } catch (error) {
+      console.error("Error submitting RSVP:", error);
+      setSubmitting(false);
+      alert("There was an issue submitting your RSVP. Please try again.");
+    }
   };
 
   return (
