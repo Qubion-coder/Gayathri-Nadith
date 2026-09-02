@@ -46,17 +46,17 @@ function FloatingPetals() {
 }
 
 export default function EngagementInvitation() {
-  const [isOpened, setIsOpened] = useState(false);
-  const [rsvpName, setRsvpName] = useState("");
-  const [attendance, setAttendance] = useState<"attending" | "declined" | null>(null);
-  const [guests, setGuests] = useState(1);
-  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
   // Read guest params from URL
   const searchParams = new URLSearchParams(window.location.search);
   const guestPrefix = searchParams.get("prefix");
   const guestName = searchParams.get("name");
+
+  const [isOpened, setIsOpened] = useState(false);
+  const [rsvpName, setRsvpName] = useState(guestName || "");
+  const [attendance, setAttendance] = useState<"attending" | "declined" | null>(null);
+  const [guests, setGuests] = useState(1);
+  const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
