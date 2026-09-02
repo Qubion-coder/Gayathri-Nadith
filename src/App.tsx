@@ -86,7 +86,7 @@ export default function EngagementInvitation() {
       formData.append("guestName", guestName || "");
 
       // Replace this URL with your deployed Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyxO0LHroR-4WZ781x8mLLPznhCTWaqgqkrJLySE0o0vFfGXDV6DLsPv4HcqmJvVoLV/exec";
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwscy_8f6IqMOivA6u_Hyr_HiHz_PNA7wJI6VWiKL_Tfx8g6UTHysbjKPMlIHKM357J/exec";
 
       if (GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
         await fetch(GOOGLE_SCRIPT_URL, {
@@ -321,7 +321,6 @@ export default function EngagementInvitation() {
                       <p className="text-[10px] md:text-xs font-cinzel tracking-[0.2em] font-bold text-theme-600 uppercase">October 2026</p>
                     </div>
 
-                    {/* Location details temporarily commented out
                     <div className="space-y-1">
                       <h3 className="text-xs md:text-base font-cinzel tracking-wider text-theme-900 uppercase font-bold">Sevonlak Hotel, Divulapitiya</h3>
                     </div>
@@ -332,11 +331,9 @@ export default function EngagementInvitation() {
                         <span>09:30 AM - 04:00 PM</span>
                       </div>
                     </div>
-                    */}
                   </div>
 
                   {/* Location Connection Link */}
-                  {/* Location link temporarily commented out
                   <div className="pt-2 w-full max-w-[280px] mx-auto">
                     <a
                       href="https://maps.app.goo.gl/S4dggMbJNLTAqFJeA?g_st=ic"
@@ -348,7 +345,6 @@ export default function EngagementInvitation() {
                       View Location on Maps
                     </a>
                   </div>
-                  */}
 
                   <div className="w-full h-px bg-gradient-to-r from-transparent via-theme-500/30 to-transparent my-1 mx-auto" />
 
